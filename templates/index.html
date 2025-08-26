@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Documentos PDF</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="{{ url_for('static', filename='images/logo-poder-judicial.png') }}" alt="Poder Judicial Provincia de Mendoza" class="header-logo">
+                </div>
+                <div class="title-section">
+                    <div class="system-title">Cédulas OCC - PODER JUDICIAL</div>
+                    <p class="subtitle">Busque documentos por número de expediente, sello o carátula</p>
+                </div>
+                <div class="search-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="search-section">
+                <form id="searchForm" class="search-form">
+                    <div class="form-group">
+                        <label for="expediente">
+                            <i class="fas fa-folder"></i> Número de Expediente
+                        </label>
+                        <input type="text" id="expediente" name="expediente" placeholder="Ej: EXP-2024-001">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sello">
+                            <i class="fas fa-stamp"></i> Número de Sello
+                        </label>
+                        <input type="text" id="sello" name="sello" placeholder="Ej: SELLO-123456">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="caratula">
+                            <i class="fas fa-file-alt"></i> Carátula
+                        </label>
+                        <input type="text" id="caratula" name="caratula" placeholder="Ej: Contrato de servicios">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="searchBtn">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="clearBtn">
+                            <i class="fas fa-times"></i> Limpiar
+                        </button>
+                    </div>
+                </form>
+
+                <div class="search-info" id="searchInfo">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Directorio de búsqueda: <span id="searchDirectory">Cargando...</span></span>
+                </div>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h2><i class="fas fa-list"></i> Resultados de la Búsqueda</h2>
+                    <span class="results-count" id="resultsCount">0 documentos encontrados</span>
+                </div>
+                
+                <div class="results-container" id="resultsContainer">
+                    <!-- Los resultados se insertarán aquí dinámicamente -->
+                </div>
+            </div>
+
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Buscando documentos...</p>
+            </div>
+
+            <div class="error-message" id="errorMessage" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span id="errorText">Ha ocurrido un error</span>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
